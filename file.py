@@ -15,7 +15,7 @@ plt.legend()
 plt.title("Experimental XRD Pattern")
 plt.grid(True)
 plt.show()
-lambda_xrd = 1.5406  # Cu-Kα radiation in Ångstroms
+lambda_xrd = 1.5406  
 def bragg_d(two_theta):
     return lambda_xrd / (2 * np.sin(np.radians(two_theta / 2)))
 experimental_d = bragg_d(theta[peaks])
@@ -24,7 +24,6 @@ formatted_d = [f"{x:.3f}" for x in experimental_d]
 print("\nExperimental Peaks Analysis:")
 print(f"2θ Positions: {formatted_theta}")
 print(f"Calculated d-spacings: {formatted_d} Å")
-# Get reference structure from Materials Project
 with MPRester("3ZRh3295Q8T1ygRw4JX8HUv4PqD8FTVY") as mpr:
     structure = mpr.get_structure_by_material_id("mp-755027")
 xrd_calculator = XRDCalculator(wavelength="CuKa")
@@ -45,7 +44,6 @@ def find_nearest(array, value):
 print("\nPeak Matching Analysis:")
 print("Exp. 2θ\tExp. d\t\tTheo. 2θ\tTheo. d\t\tMatch?")
 for i, exp_two_theta in enumerate(theta[peaks]):
-    # Find closest theoretical peak
     theo_idx = find_nearest(theoretical_pattern.x, exp_two_theta)
     exp_d = experimental_d[i]
     theo_d = theoretical_pattern.d_hkls[theo_idx]
@@ -100,16 +98,16 @@ exp_data = [
 ]
 
 hkl_list = [
-    (2, 1, 1),   # 2θ ≈ 21.5° (d ≈ 4.12 Å)
-    (2, 1, 1),   # 2θ ≈ 24.2° (d ≈ 3.67 Å)
-    (2, 2, 1),   # 2θ ≈ 27.9° (d ≈ 3.19 Å)
-    (2, 2, 2),   # 2θ ≈ 30.6° (d ≈ 2.92 Å)
-    (2, 2, 0),   # 2θ ≈ 35.5° (d ≈ 2.53 Å)
-    (3, 1, 1),   # 2θ ≈ 38.1° (d ≈ 2.36 Å)
-    (3, 3, 2),   # 2θ ≈ 41.6° (d ≈ 2.17 Å)
-    (3, 3, 1),   # 2θ ≈ 45.5° (d ≈ 1.99 Å)
-    (4, 3, 2),   # 2θ ≈ 50.9° (d ≈ 1.79 Å)
-    (4, 4, 4)    # 2θ ≈ 60.6° (d ≈ 1.53 Å)
+    (2, 1, 1),  
+    (2, 1, 1),   
+    (2, 2, 1),  
+    (2, 2, 2), 
+    (2, 2, 0),  
+    (3, 1, 1),   
+    (3, 3, 2),   
+    (3, 3, 1),   
+    (4, 3, 2),  
+    (4, 4, 4)   
 ]
 
 lambda_xrd = 1.5406  
