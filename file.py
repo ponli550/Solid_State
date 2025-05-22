@@ -24,7 +24,7 @@ formatted_d = [f"{x:.3f}" for x in experimental_d]
 print("\nExperimental Peaks Analysis:")
 print(f"2θ Positions: {formatted_theta}")
 print(f"Calculated d-spacings: {formatted_d} Å")
-with MPRester("3ZRh3295Q8T1ygRw4JX8HUv4PqD8FTVY") as mpr:
+with MPRester("your api") as mpr:
     structure = mpr.get_structure_by_material_id("mp-755027")
 xrd_calculator = XRDCalculator(wavelength="CuKa")
 theoretical_pattern = xrd_calculator.get_pattern(structure, two_theta_range=(0, 90))
